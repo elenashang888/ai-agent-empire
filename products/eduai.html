@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAI - 智能教育助手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container { max-width: 800px; width: 100%; }
+        h1 { color: white; text-align: center; margin-bottom: 10px; font-size: 2.5em; }
+        .subtitle { color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 30px; }
+        .chat-box {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .messages { height: 300px; overflow-y: auto; margin-bottom: 20px; padding: 10px; }
+        .message { margin: 10px 0; padding: 12px 16px; border-radius: 12px; max-width: 80%; white-space: pre-wrap; }
+        .user { background: #667eea; color: white; margin-left: auto; }
+        .ai { background: #f0f0f0; color: #333; }
+        .input-area { display: flex; gap: 10px; }
+        input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .feature {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-btn">← 返回</a>
+    <div class="container">
+        <h1>🎓 EduAI</h1>
+        <p class="subtitle">智能教育助手 - 让学习更高效</p>
+        
+        <div class="chat-box">
+            <div class="messages" id="messages">
+                <div class="message ai">你好！我是EduAI教育助手。我可以帮你解答学习问题、生成练习题、制定学习计划。请问有什么可以帮你的？</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="input" placeholder="输入你的问题..." onkeypress="if(event.key==='Enter')send()">
+                <button onclick="send()">发送</button>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature"><h3>📚 智能答疑</h3><p>解答各科学习问题</p></div>
+            <div class="feature"><h3>✏️ 习题生成</h3><p>自动生成练习题</p></div>
+            <div class="feature"><h3>📅 学习计划</h3><p>制定个性化学习方案</p></div>
+            <div class="feature"><h3>📝 作文批改</h3><p>AI辅助作文评分</p></div>
+        </div>
+    </div>
+    
+    <script>
+        const responses = {
+            '数学': `【EduAI】📐 数学问题我来帮你！\n\n解题步骤：\n1️⃣ 理解题意 → 2️⃣ 选择方法 → 3️⃣ 逐步计算 → 4️⃣ 验证答案\n\n💡 学习建议：建立错题本，每天练习10道基础题。需要我出几道练习题吗？`,
+            '英语': `【EduAI】🌍 英语学习建议！\n\n🎯 单词：用词根词缀法+联想记忆\n🗣️ 口语：每天跟读10分钟\n📝 写作：掌握开头-论证-结尾模板\n\n需要具体哪方面的帮助？`,
+            '计划': `【EduAI】📅 学习计划制定！\n\n⏰ 早晨7-8点：背诵（记忆黄金期）\n⏰ 上午9-11点：攻克难点\n⏰ 下午2-4点：做题练习\n⏰ 晚上7-8点：复习总结\n\n使用番茄工作法：25分钟专注+5分钟休息`,
+            'default': `【EduAI】收到你的问题！\n\n我可以帮你：\n✅ 解答各科问题\n✅ 生成练习题\n✅ 制定学习计划\n\n试试问：数学/英语/计划`
+        };
+
+        function addMessage(text, isUser) {
+            const div = document.createElement('div');
+            div.className = 'message ' + (isUser ? 'user' : 'ai');
+            div.textContent = text;
+            document.getElementById('messages').appendChild(div);
+            document.getElementById('messages').scrollTop = 999999;
+        }
+        
+        function send() {
+            const input = document.getElementById('input');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            addMessage(text, true);
+            input.value = '';
+            
+            // 模拟AI回复
+            setTimeout(() => {
+                let response = responses.default;
+                for (let key in responses) {
+                    if (text.includes(key)) {
+                        response = responses[key];
+                        break;
+                    }
+                }
+                addMessage(response, false);
+            }, 500);
+        }
+    </script>
+</body>
+</html>

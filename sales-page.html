@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Empire - 5款AI工具，月入$26,500</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        .hero .cta-button {
+            display: inline-block;
+            background: #00ff88;
+            color: #000;
+            padding: 20px 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .hero .cta-button:hover {
+            transform: scale(1.05);
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 60px 20px;
+            background: #111;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat .number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .stat .label {
+            color: #888;
+            margin-top: 10px;
+        }
+        .products {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .products h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+        }
+        .product-card .icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .product-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .product-card .price {
+            font-size: 2em;
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .product-card .price .original {
+            color: #666;
+            text-decoration: line-through;
+            font-size: 0.6em;
+            margin-left: 10px;
+        }
+        .pricing {
+            background: #111;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .pricing h2 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        .pricing-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 20px;
+        }
+        .pricing-card .bundle-name {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .pricing-card .bundle-price {
+            font-size: 4em;
+            font-weight: bold;
+        }
+        .pricing-card .bundle-original {
+            font-size: 1.5em;
+            opacity: 0.7;
+            text-decoration: line-through;
+        }
+        .pricing-card .savings {
+            background: #00ff88;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .pricing-card .features {
+            text-align: left;
+            margin: 30px 0;
+        }
+        .pricing-card .features li {
+            list-style: none;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .pricing-card .features li:before {
+            content: "✓ ";
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .footer {
+            background: #0a0a0a;
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>🚀 AI Agent Empire</h1>
+        <p class="subtitle">5款AI工具，助你月入 $26,500</p>
+        <a href="#pricing" class="cta-button">立即获取全套工具 →</a>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <div class="number">5</div>
+            <div class="label">AI工具</div>
+        </div>
+        <div class="stat">
+            <div class="number">$26.5K</div>
+            <div class="label">月收入潜力</div>
+        </div>
+        <div class="stat">
+            <div class="number">$910K</div>
+            <div class="label">年收入潜力</div>
+        </div>
+    </section>
+
+    <section class="products">
+        <h2>🛠️ 产品清单</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="icon">🎓</div>
+                <h3>EduAI 教育助手</h3>
+                <p>智能答疑、生成练习题、制定学习计划</p>
+                <div class="price">$99<span class="original">$299</span></div>
+            </div>
+            <div class="product-card">
+                <div class="icon">✍️</div>
+                <h3>ContentAI 内容创作</h3>
+                <p>写文章、生成爆款标题、改写文案</p>
+                <div class="price">$99<span class="original">$299</span></div>
+            </div>
+            <div class="product-card">
+                <div class="icon">💻</div>
+                <h3>CodeAI 代码生成</h3>
+                <p>写代码、Debug、解释算法</p>
+                <div class="price">$99<span class="original">$299</span></div>
+            </div>
+            <div class="product-card">
+                <div class="icon">🎨</div>
+                <h3>DesignAI 设计助手</h3>
+                <p>配色方案、排版建议、Midjourney提示词</p>
+                <div class="price">$99<span class="original">$299</span></div>
+            </div>
+            <div class="product-card">
+                <div class="icon">🎬</div>
+                <h3>VideoAI 视频脚本</h3>
+                <p>生成脚本、分镜设计、配音文案</p>
+                <div class="price">$99<span class="original">$299</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <h2>💎 限时优惠</h2>
+        <div class="pricing-card">
+            <div class="bundle-name">🎁 全套授权包</div>
+            <div class="bundle-original">$1,495</div>
+            <div class="bundle-price">$299</div>
+            <div class="savings">省 $1,196!</div>
+            <ul class="features">
+                <li>5款AI工具完整源码</li>
+                <li>百炼API集成</li>
+                <li>精美Web界面</li>
+                <li>部署文档</li>
+                <li>商业授权证书</li>
+                <li>终身免费更新</li>
+            </ul>
+            <a href="mailto:151804947@qq.com?subject=购买AI Agent Empire" class="cta-button">立即购买 →</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 AI Agent Empire | 联系: 151804947@qq.com</p>
+    </footer>
+</body>
+</html>

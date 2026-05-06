@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignAI - 设计助手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container { max-width: 800px; width: 100%; }
+        h1 { color: white; text-align: center; margin-bottom: 10px; font-size: 2.5em; }
+        .subtitle { color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 30px; }
+        .chat-box {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .messages { height: 300px; overflow-y: auto; margin-bottom: 20px; padding: 10px; }
+        .message { margin: 10px 0; padding: 12px 16px; border-radius: 12px; max-width: 80%; white-space: pre-wrap; }
+        .user { background: #f5576c; color: white; margin-left: auto; }
+        .ai { background: #f0f0f0; color: #333; }
+        .input-area { display: flex; gap: 10px; }
+        input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 15px 30px;
+            background: #f5576c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .feature {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-btn">← 返回</a>
+    <div class="container">
+        <h1>🎨 DesignAI</h1>
+        <p class="subtitle">设计助手 - 让设计更简单</p>
+        
+        <div class="chat-box">
+            <div class="messages" id="messages">
+                <div class="message ai">你好！我是DesignAI设计助手。我可以帮你生成设计描述、配色方案、排版建议。请告诉我你的设计需求。</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="input" placeholder="描述你的设计需求..." onkeypress="if(event.key==='Enter')send()">
+                <button onclick="send()">发送</button>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature"><h3>🎨 配色方案</h3><p>生成专业配色</p></div>
+            <div class="feature"><h3>📐 排版建议</h3><p>布局优化方案</p></div>
+            <div class="feature"><h3>✨ 设计描述</h3><p>Midjourney提示词</p></div>
+            <div class="feature"><h3>🖼️ Logo创意</h3><p>Logo设计灵感</p></div>
+        </div>
+    </div>
+    
+    <script>
+        const responses = {
+            '配色': `【DesignAI】配色方案推荐！\n\n方案1：科技感\nPrimary: #667eea\nSecondary: #764ba2\nBackground: #f5f7fa\n\n方案2：活力橙\nPrimary: #fa709a\nSecondary: #fee140\nBackground: #fff9f0\n\n方案3：自然绿\nPrimary: #11998e\nSecondary: #38ef7d\nBackground: #f0fff4\n\n搭配原则：主色占60%，辅助色30%，点缀色10%\n需要针对具体场景调整吗？`,
+            'logo': `【DesignAI】Logo设计灵感！\n\nMidjourney提示词模板：\n\nminimalist logo, [行业], [风格], \nclean lines, vector style, \nprofessional, memorable, \n--v 6 --ar 1:1\n\n示例：\n科技类：minimalist logo, tech, futuristic, gradient blue-purple\n餐饮类：minimalist logo, food, warm, orange-red gradient\n\n需要针对你的品牌定制吗？`,
+            'default': `【DesignAI】收到需求！\n\n我可以帮你：\n✅ 生成配色方案\n✅ 排版布局建议\n✅ 设计描述/Midjourney提示词\n✅ Logo创意灵感\n\n试试说：推荐配色/生成Logo提示词`
+        };
+
+        function addMessage(text, isUser) {
+            const div = document.createElement('div');
+            div.className = 'message ' + (isUser ? 'user' : 'ai');
+            div.textContent = text;
+            document.getElementById('messages').appendChild(div);
+            document.getElementById('messages').scrollTop = 999999;
+        }
+        
+        function send() {
+            const input = document.getElementById('input');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            addMessage(text, true);
+            input.value = '';
+            
+            setTimeout(() => {
+                let response = responses.default;
+                for (let key in responses) {
+                    if (text.includes(key)) {
+                        response = responses[key];
+                        break;
+                    }
+                }
+                addMessage(response, false);
+            }, 500);
+        }
+    </script>
+</body>
+</html>

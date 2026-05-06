@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoAI - 视频生成助手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container { max-width: 800px; width: 100%; }
+        h1 { color: white; text-align: center; margin-bottom: 10px; font-size: 2.5em; }
+        .subtitle { color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 30px; }
+        .chat-box {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .messages { height: 300px; overflow-y: auto; margin-bottom: 20px; padding: 10px; }
+        .message { margin: 10px 0; padding: 12px 16px; border-radius: 12px; max-width: 80%; white-space: pre-wrap; }
+        .user { background: #fa709a; color: white; margin-left: auto; }
+        .ai { background: #f0f0f0; color: #333; }
+        .input-area { display: flex; gap: 10px; }
+        input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 15px 30px;
+            background: #fa709a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .feature {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-btn">← 返回</a>
+    <div class="container">
+        <h1>🎬 VideoAI</h1>
+        <p class="subtitle">视频生成助手 - 让创作更简单</p>
+        
+        <div class="chat-box">
+            <div class="messages" id="messages">
+                <div class="message ai">你好！我是VideoAI视频助手。我可以帮你生成视频脚本、分镜描述、配音文案。请告诉我你的视频创意。</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="input" placeholder="描述你的视频需求..." onkeypress="if(event.key==='Enter')send()">
+                <button onclick="send()">发送</button>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature"><h3>📝 脚本生成</h3><p>自动生成视频脚本</p></div>
+            <div class="feature"><h3>🎬 分镜描述</h3><p>详细分镜设计</p></div>
+            <div class="feature"><h3>🎙️ 配音文案</h3><p>专业配音脚本</p></div>
+            <div class="feature"><h3>✂️ 剪辑建议</h3><p>后期制作指导</p></div>
+        </div>
+    </div>
+    
+    <script>
+        const responses = {
+            '脚本': `【VideoAI】视频脚本生成！\n\n《30天自律挑战》脚本：\n\n【开头 0-3秒】\n画面：闹钟响起，主角惊醒\n配音："你敢用30天改变自己吗？"\n\n【中间 3-25秒】\n画面：快剪30天变化过程\n配音：\n- Day 1: 早起6点，痛苦但坚持\n- Day 7: 开始享受清晨时光\n- Day 15: 皮肤变好，精神饱满\n- Day 30: 完全蜕变，自信满满\n\n【结尾 25-30秒】\n画面：前后对比+金句\n配音："自律即自由，你准备好了吗？"\n\n需要针对你的主题定制吗？`,
+            '分镜': `【VideoAI】分镜设计！\n\n产品展示视频分镜：\n\n镜号 | 景别 | 画面 | 时长 | 配音\n-----|------|------|------|------\n01 | 特写 | 产品细节特写 | 2s | "这是什么？"\n02 | 中景 | 使用场景展示 | 3s | "让效率翻倍"\n03 | 全景 | 用户满意表情 | 2s | "太神奇了！"\n04 | 特写 | 产品Logo定格 | 3s | "立即体验"\n\n💡 拍摄技巧：\n- 多用特写增加质感\n- B-roll丰富画面\n- 音乐卡点增强节奏\n\n需要详细的分镜表格吗？`,
+            'default': `【VideoAI】收到需求！\n\n我可以帮你：\n✅ 生成视频脚本\n✅ 设计分镜方案\n✅ 写配音文案\n✅ 剪辑建议\n\n试试说：写个脚本/设计分镜`
+        };
+
+        function addMessage(text, isUser) {
+            const div = document.createElement('div');
+            div.className = 'message ' + (isUser ? 'user' : 'ai');
+            div.textContent = text;
+            document.getElementById('messages').appendChild(div);
+            document.getElementById('messages').scrollTop = 999999;
+        }
+        
+        function send() {
+            const input = document.getElementById('input');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            addMessage(text, true);
+            input.value = '';
+            
+            setTimeout(() => {
+                let response = responses.default;
+                for (let key in responses) {
+                    if (text.includes(key)) {
+                        response = responses[key];
+                        break;
+                    }
+                }
+                addMessage(response, false);
+            }, 500);
+        }
+    </script>
+</body>
+</html>

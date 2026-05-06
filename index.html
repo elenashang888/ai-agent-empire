@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Empire - 统一访问端</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00ff88, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.2em;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 20px 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .stat .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .stat .label {
+            color: rgba(255,255,255,0.7);
+            margin-top: 5px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color1), var(--color2));
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .product-card.edu { --color1: #667eea; --color2: #764ba2; }
+        .product-card.content { --color1: #11998e; --color2: #38ef7d; }
+        .product-card.code { --color1: #00ff88; --color2: #00d4ff; }
+        .product-card.design { --color1: #f093fb; --color2: #f5576c; }
+        .product-card.video { --color1: #fa709a; --color2: #fee140; }
+        
+        .product-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        .product-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-desc {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .feature-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.8);
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,255,136,0.2);
+            color: #00ff88;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .access-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--color1), var(--color2));
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .access-btn:hover {
+            transform: scale(1.02);
+        }
+        .quick-actions {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        .quick-actions h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .action-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .action-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+        .action-btn .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255,255,255,0.5);
+        }
+        .revenue-display {
+            background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,212,255,0.1));
+            border: 1px solid rgba(0,255,136,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .revenue-display h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+        .revenue-amount {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 AI Agent Empire</h1>
+            <p>5款AI工具统一访问端 - 月入 $26,500</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="number">5</div>
+                    <div class="label">AI工具</div>
+                </div>
+                <div class="stat">
+                    <div class="number">5/5</div>
+                    <div class="label">运行中</div>
+                </div>
+                <div class="stat">
+                    <div class="number">$910K</div>
+                    <div class="label">年收入潜力</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="products-grid">
+            <!-- EduAI -->
+            <div class="product-card edu">
+                <div class="product-icon">🎓</div>
+                <div class="product-name">EduAI 教育助手</div>
+                <div class="status-badge">运行中</div>
+                <div class="product-desc">智能答疑、生成练习题、制定学习计划，帮助学生高效学习</div>
+                <div class="product-features">
+                    <span class="feature-tag">数学辅导</span>
+                    <span class="feature-tag">英语学习</span>
+                    <span class="feature-tag">计划制定</span>
+                </div>
+                <a href="products/eduai.html" class="access-btn" target="_blank">立即访问 →</a>
+            </div>
+
+            <!-- ContentAI -->
+            <div class="product-card content">
+                <div class="product-icon">✍️</div>
+                <div class="product-name">ContentAI 内容创作</div>
+                <div class="status-badge">运行中</div>
+                <div class="product-desc">写文章、生成爆款标题、改写文案，自媒体人的效率神器</div>
+                <div class="product-features">
+                    <span class="feature-tag">文章生成</span>
+                    <span class="feature-tag">标题优化</span>
+                    <span class="feature-tag">文案改写</span>
+                </div>
+                <a href="products/contentai.html" class="access-btn" target="_blank">立即访问 →</a>
+            </div>
+
+            <!-- CodeAI -->
+            <div class="product-card code">
+                <div class="product-icon">💻</div>
+                <div class="product-name">CodeAI 代码生成</div>
+                <div class="status-badge">运行中</div>
+                <div class="product-desc">写代码、Debug排错、解释算法，程序员的智能助手</div>
+                <div class="product-features">
+                    <span class="feature-tag">多语言</span>
+                    <span class="feature-tag">Debug</span>
+                    <span class="feature-tag">算法优化</span>
+                </div>
+                <a href="products/codeai.html" class="access-btn" target="_blank">立即访问 →</a>
+            </div>
+
+            <!-- DesignAI -->
+            <div class="product-card design">
+                <div class="product-icon">🎨</div>
+                <div class="product-name">DesignAI 设计助手</div>
+                <div class="status-badge">运行中</div>
+                <div class="product-desc">配色方案、排版建议、Midjourney提示词，设计师的灵感库</div>
+                <div class="product-features">
+                    <span class="feature-tag">配色生成</span>
+                    <span class="feature-tag">Logo创意</span>
+                    <span class="feature-tag">MJ提示词</span>
+                </div>
+                <a href="products/designai.html" class="access-btn" target="_blank">立即访问 →</a>
+            </div>
+
+            <!-- VideoAI -->
+            <div class="product-card video">
+                <div class="product-icon">🎬</div>
+                <div class="product-name">VideoAI 视频脚本</div>
+                <div class="status-badge">运行中</div>
+                <div class="product-desc">生成脚本、分镜设计、配音文案，短视频创作者的得力助手</div>
+                <div class="product-features">
+                    <span class="feature-tag">脚本生成</span>
+                    <span class="feature-tag">分镜设计</span>
+                    <span class="feature-tag">配音文案</span>
+                </div>
+                <a href="products/videoai.html" class="access-btn" target="_blank">立即访问 →</a>
+            </div>
+        </div>
+
+        <div class="revenue-display">
+            <h3>💰 收入潜力</h3>
+            <div class="revenue-amount">M1: $26,500 | M12: $910,000</div>
+            <p style="color: rgba(255,255,255,0.7); margin-top: 10px;">自己运营 + 售卖授权 = 双重变现</p>
+        </div>
+
+        <div class="quick-actions">
+            <h2>⚡ 快捷操作</h2>
+            <div class="action-grid">
+                <div class="action-btn" onclick="openAll()">
+                    <div class="icon">🌐</div>
+                    <div>打开全部</div>
+                </div>
+                <div class="action-btn" onclick="copyLinks()">
+                    <div class="icon">📋</div>
+                    <div>复制链接</div>
+                </div>
+                <div class="action-btn" onclick="checkStatus()">
+                    <div class="icon">🔍</div>
+                    <div>检查状态</div>
+                </div>
+                <div class="action-btn" onclick="window.open('sales-page.html', '_blank')">
+                    <div class="icon">💎</div>
+                    <div>销售页面</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>AI Agent Empire © 2026 | 联系: 151804947@qq.com</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">5款AI工具，助你实现财务自由</p>
+        </footer>
+    </div>
+
+    <script>
+        function openAll() {
+            window.open('http://localhost:5001', '_blank');
+            setTimeout(() => window.open('http://localhost:5002', '_blank'), 500);
+            setTimeout(() => window.open('http://localhost:5003', '_blank'), 1000);
+            setTimeout(() => window.open('http://localhost:5004', '_blank'), 1500);
+            setTimeout(() => window.open('http://localhost:5005', '_blank'), 2000);
+        }
+
+        function copyLinks() {
+            const links = `AI Agent Empire - 访问链接
+
+🎓 EduAI: http://localhost:5001
+✍️ ContentAI: http://localhost:5002
+💻 CodeAI: http://localhost:5003
+🎨 DesignAI: http://localhost:5004
+🎬 VideoAI: http://localhost:5005
+
+收入潜力: M1 $26,500 | M12 $910,000`;
+            navigator.clipboard.writeText(links).then(() => {
+                alert('链接已复制到剪贴板！');
+            });
+        }
+
+        function checkStatus() {
+            const ports = [5001, 5002, 5003, 5004, 5005];
+            let results = [];
+            ports.forEach(port => {
+                fetch(`http://localhost:${port}/api/health`, { mode: 'no-cors' })
+                    .then(() => results.push(`端口 ${port}: ✅`))
+                    .catch(() => results.push(`端口 ${port}: ❌`));
+            });
+            setTimeout(() => alert('状态检查:\n' + results.join('\n')), 1000);
+        }
+    </script>
+</body>
+</html>
