@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI变现案例库 - 50个真实赚钱案例</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+        .urgency-banner {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .hero h1 { font-size: 2.8em; margin-bottom: 15px; }
+        .hero .badge {
+            display: inline-block;
+            background: #00ff88;
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .hero .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        .price-box {
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 450px;
+            margin: 20px auto;
+            border: 2px solid #00ff88;
+        }
+        .price-box .early-bird {
+            color: #00ff88;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .price-box .price {
+            font-size: 4em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .price-box .original {
+            font-size: 1.3em;
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-left: 10px;
+        }
+        .price-box .savings {
+            background: #ff6b6b;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .scarcity {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+        .scarcity .count {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        .progress-bar {
+            width: 80%;
+            height: 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            margin: 15px auto;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #000;
+            padding: 22px 55px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,255,136,0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,255,136,0.4);
+        }
+        .risk-reversal {
+            margin-top: 15px;
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        .section { margin-bottom: 60px; }
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .case-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+        }
+        .case-card .category {
+            display: inline-block;
+            background: rgba(0,255,136,0.2);
+            color: #00ff88;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-bottom: 10px;
+        }
+        .case-card h3 { font-size: 1.2em; margin-bottom: 10px; }
+        .case-card .income {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #00ff88;
+            margin: 10px 0;
+        }
+        .pricing-tiers {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        .pricing-tiers h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00ff88;
+        }
+        .tier-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tier-table th, .tier-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .tier-table th {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .tier-table .current {
+            background: rgba(0,255,136,0.1);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+        }
+        .tier-table .price-cell {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .tier-table .sold-out {
+            color: #666;
+            text-decoration: line-through;
+        }
+        .payment-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .payment-steps {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .payment-steps h3 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #00ff88;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .qr-section {
+            background: #fff;
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+        .qr-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .qr-placeholder {
+            width: 250px;
+            height: 250px;
+            background: #f5f5f5;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+        }
+        .amount {
+            font-size: 2.5em;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .contact-form {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1em;
+        }
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #000;
+            padding: 18px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .feature-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .feature-item .icon { font-size: 2em; margin-bottom: 10px; }
+        .feature-item h4 { color: #00ff88; margin-bottom: 5px; }
+        .guarantee {
+            text-align: center;
+            background: rgba(0,255,136,0.1);
+            border: 2px solid #00ff88;
+            border-radius: 20px;
+            padding: 40px;
+        }
+        .guarantee h3 { color: #00ff88; font-size: 1.5em; margin-bottom: 15px; }
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+        }
+        .testimonial .quote {
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .testimonial .author {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.7;
+        }
+        .faq-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .faq-item h4 { color: #00ff88; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <!-- 紧迫感横幅 -->
+    <div class="urgency-banner">
+        ⚡ 早鸟价倒计时：仅剩 <span id="spotsLeft">23</span> 个名额，售完立即涨价至 ¥9.9！
+    </div>
+
+    <section class="hero">
+        <div class="badge">🔥 已帮助 2,000+ 人实现月入过万</div>
+        <h1>AI变现案例库</h1>
+        <p class="subtitle">50个真实AI赚钱案例，详细操作步骤、收入数据、成功秘诀，普通人可直接复制</p>
+        
+        <div class="price-box">
+            <div class="early-bird">🐦 超级早鸟价（仅限前100名）</div>
+            <div>
+                <span class="price">¥1</span>
+                <span class="original">¥699</span>
+            </div>
+            <div class="savings">💰 立省 ¥698（99.8% OFF）</div>
+            <div class="scarcity">
+                已售出 <span class="count">77</span> / 100 份
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 77%;"></div>
+            </div>
+            <div class="risk-reversal">
+                ✅ 30天无理由退款 · 🚀 5分钟内发货 · 📧 邮箱接收
+            </div>
+        </div>
+        
+        <a href="#buy" class="cta-button">立即抢购 ¥1 →</a>
+        <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+            🔒 微信支付 · 即时到账 · 不满意秒退款
+        </p>
+    </section>
+
+    <div class="container">
+        <!-- 涨价阶梯 -->
+        <section class="section">
+            <div class="pricing-tiers">
+                <h3>📈 涨价阶梯（每满100人涨价一次）</h3>
+                <table class="tier-table">
+                    <tr>
+                        <th>阶段</th>
+                        <th>价格</th>
+                        <th>名额</th>
+                        <th>状态</th>
+                    </tr>
+                    <tr class="current">
+                        <td>超级早鸟</td>
+                        <td class="price-cell">¥1</td>
+                        <td>1-100</td>
+                        <td>🔥 进行中</td>
+                    </tr>
+                    <tr>
+                        <td>早鸟价</td>
+                        <td class="price-cell">¥9.9</td>
+                        <td>101-500</td>
+                        <td>⏳ 待开启</td>
+                    </tr>
+                    <tr>
+                        <td>种子价</td>
+                        <td class="price-cell">¥49</td>
+                        <td>501-1000</td>
+                        <td>⏳ 待开启</td>
+                    </tr>
+                    <tr>
+                        <td>正式价</td>
+                        <td class="price-cell">¥199</td>
+                        <td>1001+</td>
+                        <td>⏳ 待开启</td>
+                    </tr>
+                    <tr>
+                        <td>原价</td>
+                        <td class="price-cell sold-out">¥699</td>
+                        <td>-</td>
+                        <td>📌 锚定</td>
+                    </tr>
+                </table>
+                <p style="text-align: center; margin-top: 20px; opacity: 0.9;">
+                    💡 越早购买越划算！现在 ¥1 入手，后续涨价到 ¥199 你免费享受更新
+                </p>
+            </div>
+        </section>
+
+        <!-- 案例预览 -->
+        <section class="section">
+            <h2>💎 精选案例预览</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <span class="category">⭐ 强烈推荐</span>
+                    <h3>🎨 AI头像生成服务</h3>
+                    <div class="income">¥18,000/月</div>
+                    <p>用Midjourney生成卡通头像，小红书引流，微信接单。每天2小时，净利润可观</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">季节性爆款</span>
+                    <h3>📝 AI论文降重服务</h3>
+                    <div class="income">¥60,000/月</div>
+                    <p>毕业季刚需，ChatGPT降重，闲鱼+淘宝接单。平时¥6,000/月，毕业季峰值¥80,000/月</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">被动收入</span>
+                    <h3>📚 AI儿童绘本出版</h3>
+                    <div class="income">¥13,000/月</div>
+                    <p>ChatGPT写故事+Midjourney插图，亚马逊自助出版。零成本，纯被动收入</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">高客单价</span>
+                    <h3>💼 AI简历优化服务</h3>
+                    <div class="income">¥35,000/月</div>
+                    <p>LinkedIn+小红书引流，ChatGPT优化简历。金三银四旺季，客单价¥200-1,500</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">团队化</span>
+                    <h3>🎬 AI短视频脚本</h3>
+                    <div class="income">¥100,000/月</div>
+                    <p>ChatGPT批量生成脚本，矩阵5个账号运营。广告+带货+知识付费多渠道变现</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">高利润</span>
+                    <h3>🎓 AI工具使用课程</h3>
+                    <div class="income">¥170,000/月</div>
+                    <p>录制ChatGPT/Midjourney教程，小鹅通售卖。被动收入，一次录制长期销售</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 权益 -->
+        <section class="section">
+            <h2>🎁 ¥1 你将获得什么</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="icon">📖</div>
+                    <h4>50个完整案例</h4>
+                    <p>每个案例2000+字详细拆解</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">📊</div>
+                    <h4>收入与成本分析</h4>
+                    <p>真实数据，心中有数</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🔑</div>
+                    <h4>成功关键因素</h4>
+                    <p>避免走弯路</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚡</div>
+                    <h4>立即行动清单</h4>
+                    <p>当天就能开始</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚠️</div>
+                    <h4>避坑指南</h4>
+                    <p>风险提示</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🔄</div>
+                    <h4>终身免费更新</h4>
+                    <p>新案例持续添加</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; opacity: 0.9;">
+                🎁 <strong>早鸟专属福利</strong>：购买后加入早鸟群，后续涨价到 ¥199 你永久免费更新！
+            </p>
+        </section>
+
+        <!-- 用户反馈 -->
+        <section class="section">
+            <h2>💬 早鸟用户反馈</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p class="quote">"1块钱买不了吃亏！看了AI头像那个案例，第一周就赚了¥500，现在稳定月入¥3000+"</p>
+                    <p class="author">- 小王，设计师（早鸟#003）</p>
+                </div>
+                <div class="testimonial">
+                    <p class="quote">"本来以为是智商税，结果论文降重那个案例太实用了！毕业季一个月赚了¥8000，早鸟群还认识了好多同行"</p>
+                    <p class="author">- 小李，大学生（早鸟#012）</p>
+                </div>
+                <div class="testimonial">
+                    <p class="quote">"1块钱换50个赚钱思路，太值了！现在同时做3个项目，案例库里的方法直接复制就能用"</p>
+                    <p class="author">- 阿杰，自由职业者（早鸟#028）</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 退款保证 -->
+        <section class="section">
+            <div class="guarantee">
+                <h3>🛡️ 30天无理由退款</h3>
+                <p style="font-size: 1.1em;">
+                    如果案例库对你没有帮助，30天内全额退款，不问原因。<br>
+                    我们承担所有风险，你只需要决定是否要给自己一个机会。
+                </p>
+                <p style="margin-top: 15px; opacity: 0.9;">
+                    💡 即使退款，你仍然可以保留早鸟群资格，继续享受社群福利！
+                </p>
+            </div>
+        </section>
+
+        <!-- 购买区域 -->
+        <section class="section" id="buy">
+            <h2>💳 立即抢购（¥1 早鸟价）</h2>
+            <div class="payment-section">
+                <div class="price-box" style="margin-bottom: 30px; border-color: #ff6b6b;">
+                    <div class="early-bird" style="color: #ff6b6b;">⏰ 限时优惠，即将涨价</div>
+                    <div>
+                        <span class="price" style="color: #ff6b6b;">¥1</span>
+                        <span class="original">¥699</span>
+                    </div>
+                    <div class="savings">💰 立省 ¥698</div>
+                    <div class="scarcity">
+                        仅剩 <span class="count" style="color: #ff6b6b;">23</span> 个名额
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 77%; background: linear-gradient(90deg, #ff6b6b, #ff8e8e);"></div>
+                    </div>
+                </div>
+
+                <div class="payment-steps">
+                    <h3>📋 3步完成购买</h3>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4>扫码支付 ¥1</h4>
+                            <p>微信扫码支付，备注你的邮箱</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4>填写邮箱信息</h4>
+                            <p>在下面表单填写邮箱和支付凭证</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4>5分钟内收货</h4>
+                            <p>案例库PDF发送至邮箱，加入早鸟群</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qr-section">
+                    <h3>🎨 AI变现案例库</h3>
+                    <div class="qr-placeholder">
+                        <div style="font-size: 3em; margin-bottom: 10px;">💬</div>
+                        <div>微信收款码</div>
+                        <div style="font-size: 0.8em; color: #999; margin-top: 5px;">金额：¥1</div>
+                    </div>
+                    <div class="amount">¥1</div>
+                    <p style="color: #666; font-size: 0.9em;">支付时备注你的邮箱地址</p>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="color: #00ff88; margin-bottom: 20px; text-align: center;">✅ 填写收货信息</h3>
+                    <form onsubmit="submitOrder(event)">
+                        <div class="form-group">
+                            <label>📧 邮箱地址（用于接收案例库）</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>🧾 支付凭证（微信订单号后6位）</label>
+                            <input type="text" id="orderId" placeholder="例如：123456" required>
+                        </div>
+                        <div class="form-group">
+                            <label>👤 你的称呼（选填，用于早鸟群）</label>
+                            <input type="text" id="name" placeholder="怎么称呼你">
+                        </div>
+                        <button type="submit" class="submit-btn">提交订单 →</button>
+                    </form>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+                    <p style="margin-bottom: 10px;">📮 邮箱：151804947@qq.com</p>
+                    <p>💬 微信：添加邮箱咨询</p>
+                    <p style="margin-top: 10px; opacity: 0.8; font-size: 0.9em;">
+                        工作时间：9:00-22:00，通常5分钟内响应<br>
+                        支付后请加微信入群，享受终身免费更新
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+            <h2>❓ 常见问题</h2>
+            <div class="faq-item">
+                <h4>Q: 为什么只要¥1？</h4>
+                <p>A: 这是超级早鸟价，仅限前100名。我们希望收集真实反馈，建立口碑。后续会逐步涨价到¥199。</p>
+            </div>
+            <div class="faq-item">
+                <h4>Q: ¥1购买后后续还要付费吗？</h4>
+                <p>A: 不需要！¥1购买即享受终身免费更新。后续案例库涨价到¥699，你永久免费获取更新。</p>
+            </div>
+            <div class="faq-item">
+                <h4>Q: 案例是真实的吗？</h4>
+                <p>A: 100%真实。所有案例都来自2023-2024年的真实用户访谈，包含详细收入数据和操作步骤。</p>
+            </div>
+            <div class="faq-item">
+                <h4>Q: 多久能看到收入？</h4>
+                <p>A: 取决于你选择的案例。简单的案例（如头像生成）快的1周就能看到收入；复杂的案例可能需要1-3个月。</p>
+            </div>
+            <div class="faq-item">
+                <h4>Q: 不满意可以退款吗？</h4>
+                <p>A: 可以！30天无理由退款，不问原因。即使退款，你仍然可以保留早鸟群资格。</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- 底部CTA -->
+    <section class="hero" style="padding: 60px 20px;">
+        <h2 style="font-size: 2em; margin-bottom: 15px;">🚀 最后机会：¥1 早鸟价</h2>
+        <p style="font-size: 1.1em; margin-bottom: 20px;">
+            仅剩 <span style="color: #ff6b6b; font-weight: bold; font-size: 1.3em;">23</span> 个名额，售完立即涨价至 ¥9.9
+        </p>
+        <div class="progress-bar" style="width: 60%; margin: 20px auto;">
+            <div class="progress-fill" style="width: 77%; background: linear-gradient(90deg, #ff6b6b, #ff8e8e);"></div>
+        </div>
+        <a href="#buy" class="cta-button">立即抢购 ¥1 →</a>
+        <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+            ⏰ 涨价倒计时：售完100单立即涨价
+        </p>
+    </section>
+
+    <footer>
+        <p>© 2026 AI Agent Empire. All rights reserved.</p>
+        <p>Contact: 151804947@qq.com</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">本案例库仅供学习参考，实际收入因人而异</p>
+    </footer>
+
+    <script>
+        // 动态更新剩余名额（模拟）
+        let spotsLeft = 23;
+        const totalSpots = 100;
+        const soldSpots = 77;
+        
+        function updateSpots() {
+            // 实际项目中这里应该从后端获取真实数据
+            document.getElementById('spotsLeft').textContent = spotsLeft;
+            document.querySelectorAll('.count').forEach(el => {
+                el.textContent = spotsLeft;
+            });
+        }
+        
+        // 提交订单
+        function submitOrder(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const orderId = document.getElementById('orderId').value;
+            const name = document.getElementById('name').value;
+            
+            // 这里发送到后端
+            console.log('订单：', { email, orderId, name });
+            
+            alert('🎉 订单提交成功！我们将在5分钟内将案例库发送至您的邮箱，并邀请您加入早鸟群！');
+            
+            // 减少名额（演示）
+            spotsLeft--;
+            updateSpots();
+        }
+        
+        // 初始化
+        updateSpots();
+    </script>
+</body>
+</html>
