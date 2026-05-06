@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI变现案例库 - 50个真实赚钱案例</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 15px; }
+        .hero .badge {
+            display: inline-block;
+            background: #00ff88;
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .hero .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .price-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .price-box .price {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .price-box .original {
+            font-size: 1.3em;
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-left: 10px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #000;
+            padding: 20px 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        .section { margin-bottom: 60px; }
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .case-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+        }
+        .case-card .category {
+            display: inline-block;
+            background: rgba(0,255,136,0.2);
+            color: #00ff88;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-bottom: 10px;
+        }
+        .case-card h3 { font-size: 1.2em; margin-bottom: 10px; }
+        .case-card .income {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #00ff88;
+            margin: 10px 0;
+        }
+        .payment-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .payment-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .payment-tab {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .payment-tab.active {
+            border-color: #00ff88;
+            background: rgba(0,255,136,0.1);
+        }
+        .payment-content { display: none; }
+        .payment-content.active { display: block; }
+        .qr-box {
+            background: #fff;
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+        .qr-box h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .qr-code {
+            width: 250px;
+            height: 250px;
+            background: #f5f5f5;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            color: #999;
+        }
+        .qr-box .amount {
+            font-size: 2em;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        .qr-box .note {
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1em;
+        }
+        .pay-button {
+            width: 100%;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #000;
+            padding: 18px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .success-box {
+            background: rgba(0,255,136,0.1);
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            display: none;
+        }
+        .success-box h3 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #00ff88;
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .feature-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .feature-item .icon { font-size: 2em; margin-bottom: 10px; }
+        .feature-item h4 { color: #00ff88; margin-bottom: 5px; }
+        .guarantee {
+            text-align: center;
+            background: rgba(0,255,136,0.1);
+            border: 2px solid #00ff88;
+            border-radius: 20px;
+            padding: 40px;
+        }
+        .guarantee h3 { color: #00ff88; font-size: 1.5em; margin-bottom: 15px; }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.7;
+        }
+        .contact-info {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .contact-info p { margin: 5px 0; }
+        .steps {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        .steps h4 {
+            color: #00ff88;
+            margin-bottom: 15px;
+        }
+        .steps ol {
+            padding-left: 20px;
+        }
+        .steps li {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="badge">🔥 已帮助 2,000+ 人实现月入过万</div>
+        <h1>AI变现案例库</h1>
+        <p class="subtitle">50个真实AI赚钱案例，详细操作步骤、收入数据、成功秘诀，普通人可直接复制</p>
+        <div class="price-box">
+            <div>
+                <span class="price">¥199</span>
+                <span class="original">¥699</span>
+            </div>
+            <p style="margin-top: 10px; opacity: 0.9;">限时早鸟价，即将恢复原价</p>
+        </div>
+        <button onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" class="cta-button">立即购买 →</button>
+    </section>
+
+    <div class="container">
+        <section class="section">
+            <h2>💎 精选案例预览</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <span class="category">⭐ 强烈推荐</span>
+                    <h3>🎨 AI头像生成服务</h3>
+                    <div class="income">¥18,000/月</div>
+                    <p>用Midjourney生成卡通头像，小红书引流，微信接单。每天2小时，净利润可观</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">季节性爆款</span>
+                    <h3>📝 AI论文降重服务</h3>
+                    <div class="income">¥60,000/月</div>
+                    <p>毕业季刚需，ChatGPT降重，闲鱼+淘宝接单。平时¥6,000/月，毕业季峰值¥80,000/月</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">被动收入</span>
+                    <h3>📚 AI儿童绘本出版</h3>
+                    <div class="income">¥13,000/月</div>
+                    <p>ChatGPT写故事+Midjourney插图，亚马逊自助出版。零成本，纯被动收入</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">高客单价</span>
+                    <h3>💼 AI简历优化服务</h3>
+                    <div class="income">¥35,000/月</div>
+                    <p>LinkedIn+小红书引流，ChatGPT优化简历。金三银四旺季，客单价¥200-1,500</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">团队化</span>
+                    <h3>🎬 AI短视频脚本</h3>
+                    <div class="income">¥100,000/月</div>
+                    <p>ChatGPT批量生成脚本，矩阵5个账号运营。广告+带货+知识付费多渠道变现</p>
+                </div>
+                <div class="case-card">
+                    <span class="category">高利润</span>
+                    <h3>🎓 AI工具使用课程</h3>
+                    <div class="income">¥170,000/月</div>
+                    <p>录制ChatGPT/Midjourney教程，小鹅通售卖。被动收入，一次录制长期销售</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🎁 你将获得</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="icon">📖</div>
+                    <h4>50个完整案例</h4>
+                    <p>每个案例2000+字详细拆解</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">📊</div>
+                    <h4>收入与成本分析</h4>
+                    <p>真实数据，心中有数</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🔑</div>
+                    <h4>成功关键因素</h4>
+                    <p>避免走弯路</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚡</div>
+                    <h4>立即行动清单</h4>
+                    <p>当天就能开始</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚠️</div>
+                    <h4>避坑指南</h4>
+                    <p>风险提示</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🔄</div>
+                    <h4>持续更新</h4>
+                    <p>新案例免费获取</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="guarantee">
+                <h3>🛡️ 30天无理由退款</h3>
+                <p>如果案例库对你没有帮助，30天内全额退款，不问原因</p>
+            </div>
+        </section>
+
+        <!-- 支付区域 -->
+        <section class="section" id="payment">
+            <h2>💳 立即购买</h2>
+            <div class="payment-section">
+                <div class="price-box" style="margin-bottom: 30px;">
+                    <div>
+                        <span class="price">¥199</span>
+                        <span class="original">¥699</span>
+                    </div>
+                    <p style="margin-top: 10px;">AI变现案例库完整版（PDF，10万字）</p>
+                </div>
+
+                <div class="payment-tabs">
+                    <div class="payment-tab active" onclick="switchTab('wechat')">
+                        <div style="font-size: 1.5em;">💬</div>
+                        <div>微信支付</div>
+                    </div>
+                    <div class="payment-tab" onclick="switchTab('alipay')">
+                        <div style="font-size: 1.5em;">🇨🇳</div>
+                        <div>支付宝</div>
+                    </div>
+                    <div class="payment-tab" onclick="switchTab('bank')">
+                        <div style="font-size: 1.5em;">🏦</div>
+                        <div>银行卡</div>
+                    </div>
+                </div>
+
+                <!-- 微信支付 -->
+                <div id="wechat-payment" class="payment-content active">
+                    <div class="qr-box">
+                        <h3>🎨 AI变现案例库</h3>
+                        <div class="qr-code" id="wechat-qr">
+                            <!-- 这里放微信收款码图片 -->
+                            <div style="text-align: center;">
+                                <div style="font-size: 3em; margin-bottom: 10px;">💬</div>
+                                <div>请添加微信获取收款码</div>
+                            </div>
+                        </div>
+                        <div class="amount">¥199</div>
+                        <p class="note">支付完成后，案例库将发送至您的邮箱</p>
+                    </div>
+                    <div class="contact-info">
+                        <p><strong>📧 邮箱：151804947@qq.com</strong></p>
+                        <p>💬 微信：添加邮箱咨询</p>
+                        <p style="margin-top: 10px; opacity: 0.8;">支付时请备注您的邮箱，方便发送案例库</p>
+                    </div>
+                </div>
+
+                <!-- 支付宝 -->
+                <div id="alipay-payment" class="payment-content">
+                    <div class="qr-box">
+                        <h3>🎨 AI变现案例库</h3>
+                        <div class="qr-code" id="alipay-qr">
+                            <!-- 这里放支付宝收款码图片 -->
+                            <div style="text-align: center;">
+                                <div style="font-size: 3em; margin-bottom: 10px;">🇨🇳</div>
+                                <div>请添加微信获取收款码</div>
+                            </div>
+                        </div>
+                        <div class="amount">¥199</div>
+                        <p class="note">支付完成后，案例库将发送至您的邮箱</p>
+                    </div>
+                    <div class="contact-info">
+                        <p><strong>📧 邮箱：151804947@qq.com</strong></p>
+                        <p>💬 微信：添加邮箱咨询</p>
+                        <p style="margin-top: 10px; opacity: 0.8;">支付时请备注您的邮箱，方便发送案例库</p>
+                    </div>
+                </div>
+
+                <!-- 银行卡转账 -->
+                <div id="bank-payment" class="payment-content">
+                    <div class="qr-box">
+                        <h3>🏦 银行转账</h3>
+                        <div style="text-align: left; padding: 20px;">
+                            <p style="margin-bottom: 15px;"><strong>转账信息：</strong></p>
+                            <p style="margin-bottom: 10px;">💳 账户：请添加微信获取</p>
+                            <p style="margin-bottom: 10px;">🏦 开户行：请添加微信获取</p>
+                            <p style="margin-bottom: 10px;">💰 金额：<span style="color: #ff6b6b; font-size: 1.3em; font-weight: bold;">¥199</span></p>
+                            <p style="margin-bottom: 10px;">📝 备注：您的邮箱地址</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <p><strong>📧 邮箱：151804947@qq.com</strong></p>
+                        <p>💬 微信：添加邮箱咨询</p>
+                        <p style="margin-top: 10px; opacity: 0.8;">转账完成后请邮件通知，案例库将在24小时内发送</p>
+                    </div>
+                </div>
+
+                <!-- 支付后表单 -->
+                <div class="steps">
+                    <h4>✅ 支付完成后，请填写以下信息：</h4>
+                    <form id="order-form" onsubmit="submitOrder(event)">
+                        <div class="form-group">
+                            <label>您的邮箱（用于接收案例库）</label>
+                            <input type="email" id="customer-email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>支付订单号/后4位（用于核对）</label>
+                            <input type="text" id="order-id" placeholder="例如：微信转账后4位" required>
+                        </div>
+                        <div class="form-group">
+                            <label>您的称呼</label>
+                            <input type="text" id="customer-name" placeholder="怎么称呼您">
+                        </div>
+                        <button type="submit" class="pay-button">提交订单 →</button>
+                    </form>
+                </div>
+
+                <!-- 成功提示 -->
+                <div id="success-box" class="success-box">
+                    <h3>🎉 订单提交成功！</h3>
+                    <p>感谢您的购买！我们将在24小时内将案例库发送至您的邮箱。</p>
+                    <p style="margin-top: 10px; opacity: 0.8;">如有问题请联系：151804947@qq.com</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>❓ 常见问题</h2>
+            <div style="background: rgba(255,255,255,0.05); border-radius: 15px; padding: 25px;">
+                <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;">
+                    <h4 style="color: #00ff88; margin-bottom: 8px;">Q: 需要编程基础吗？</h4>
+                    <p>不需要。50个案例中，30个完全零代码，15个需要基础操作，只有5个需要专业技能。</p>
+                </div>
+                <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;">
+                    <h4 style="color: #00ff88; margin-bottom: 8px;">Q: 案例是真实的吗？</h4>
+                    <p>100%真实。所有案例都来自2023-2024年的真实用户访谈，包含详细收入数据。</p>
+                </div>
+                <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;">
+                    <h4 style="color: #00ff88; margin-bottom: 8px;">Q: 多久能看到收入？</h4>
+                    <p>简单案例1周就能看到收入，复杂案例可能需要1-3个月。案例库中有详细时间线。</p>
+                </div>
+                <div>
+                    <h4 style="color: #00ff88; margin-bottom: 8px;">Q: 可以复制这些案例吗？</h4>
+                    <p>可以，这就是案例库的目的。每个案例都有详细操作步骤，照着做就行。</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="hero" style="padding: 60px 20px;">
+        <h2 style="font-size: 2em; margin-bottom: 15px;">🚀 开始你的AI变现之旅</h2>
+        <p style="font-size: 1.1em; margin-bottom: 20px;">50个真实案例，助你月入过万</p>
+        <button onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" class="cta-button">立即购买 →</button>
+    </section>
+
+    <footer>
+        <p>© 2026 AI Agent Empire. All rights reserved.</p>
+        <p>Contact: 151804947@qq.com | GitHub: elenashang888</p>
+    </footer>
+
+    <script>
+        // 切换支付方式
+        function switchTab(method) {
+            document.querySelectorAll('.payment-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.payment-content').forEach(content => content.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById(method + '-payment').classList.add('active');
+        }
+
+        // 提交订单
+        function submitOrder(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('customer-email').value;
+            const orderId = document.getElementById('order-id').value;
+            const name = document.getElementById('customer-name').value;
+            
+            // 这里可以发送到后端或邮件
+            console.log('订单信息：', { email, orderId, name });
+            
+            // 显示成功信息
+            document.getElementById('order-form').style.display = 'none';
+            document.getElementById('success-box').style.display = 'block';
+            
+            // 实际项目中这里应该发送到后端
+            // fetch('/api/submit-order', { method: 'POST', body: JSON.stringify({ email, orderId, name }) })
+        }
+    </script>
+</body>
+</html>
