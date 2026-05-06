@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get 500+ AI Prompts Free</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .benefits {
+            text-align: left;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .benefits h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .benefits ul {
+            list-style: none;
+        }
+        .benefits li {
+            padding: 8px 0;
+            color: #555;
+        }
+        .benefits li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input[type="email"]:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.02);
+        }
+        .privacy {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+        .success {
+            display: none;
+        }
+        .success h2 {
+            color: #00c853;
+            margin-bottom: 20px;
+        }
+        .success p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #00c853;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 表单页面 -->
+        <div id="form-page">
+            <div class="icon">🎁</div>
+            <h1>Get 500+ AI Prompts</h1>
+            <p class="subtitle">Join 2,000+ creators using these battle-tested prompts to 10x their productivity with ChatGPT, Claude & Gemini</p>
+            
+            <div class="benefits">
+                <h3>What you'll get:</h3>
+                <ul>
+                    <li>500+ prompts across 10 categories</li>
+                    <li>Top 10 most popular templates</li>
+                    <li>25 ChatGPT custom instructions</li>
+                    <li>Weekly new prompts via email</li>
+                    <li>Free Notion access</li>
+                </ul>
+            </div>
+            
+            <form id="email-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <input type="hidden" name="source" value="prompt-library">
+                <button type="submit">Get Free Access →</button>
+            </form>
+            
+            <p class="privacy">🔒 No spam. Unsubscribe anytime. We respect your privacy.</p>
+        </div>
+        
+        <!-- 成功页面 -->
+        <div id="success-page" class="success">
+            <div class="icon">🎉</div>
+            <h2>You're in!</h2>
+            <p>Check your email for the Notion link and PDF download.</p>
+            <a href="https://www.notion.so/Global-AI-Prompt-Library-Free-35878dda622981dca588ce8425a4b867" class="cta-button" target="_blank">Open Notion Library →</a>
+            <p style="margin-top: 20px; font-size: 14px;">
+                <a href="#" style="color: #667eea;">Upgrade to Automation Workflows →</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // 简单的表单处理
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 这里需要替换为实际的表单提交服务
+            // 选项1: Formspree (免费)
+            // 选项2: Google Forms (免费)
+            // 选项3: Notion API + 自建后端
+            
+            // 临时演示：直接显示成功
+            document.getElementById('form-page').style.display = 'none';
+            document.getElementById('success-page').style.display = 'block';
+            document.getElementById('success-page').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
