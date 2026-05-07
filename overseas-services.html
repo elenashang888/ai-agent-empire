@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Services for Overseas Clients - Product Matrix</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            padding: 60px 0;
+        }
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p {
+            font-size: 1.3em;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color1), var(--color2));
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .product-card.p1 { --color1: #00d4ff; --color2: #00ff88; }
+        .product-card.p2 { --color1: #ff6b6b; --color2: #feca57; }
+        .product-card.p3 { --color1: #a855f7; --color2: #ec4899; }
+        .product-card.p4 { --color1: #3b82f6; --color2: #06b6d4; }
+        .product-card.p5 { --color1: #f59e0b; --color2: #ef4444; }
+        .product-card.p6 { --color1: #10b981; --color2: #3b82f6; }
+        
+        .product-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .product-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-tagline {
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        .product-price {
+            font-size: 1.5em;
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .product-desc {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        .product-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+        .product-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .product-features li:before {
+            content: "✓ ";
+            color: #00ff88;
+        }
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--color1), var(--color2));
+            color: #000;
+            text-align: center;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .comparison {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+        .comparison h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        th {
+            color: #00d4ff;
+        }
+        .revenue-projections {
+            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,255,136,0.1));
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        .revenue-projections h2 {
+            margin-bottom: 30px;
+        }
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .revenue-item {
+            padding: 20px;
+        }
+        .revenue-item .month {
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+        .revenue-item .amount {
+            font-size: 2em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+        }
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            color: #000;
+            padding: 20px 60px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 AI Services for Overseas Clients</h1>
+            <p>Custom AI solutions that automate your business, generate content, and scale your revenue. Built by experts, delivered in days.</p>
+        </header>
+
+        <div class="products-grid">
+            <!-- Product 1: AgentForge -->
+            <div class="product-card p1">
+                <div class="product-icon">⚡</div>
+                <div class="product-name">AgentForge</div>
+                <div class="product-tagline">Custom AI Automation for Your Business</div>
+                <div class="product-price">$499 - $4,999</div>
+                <div class="product-desc">We build AI agents that handle your repetitive tasks 24/7. No coding required. 7-day delivery.</div>
+                <ul class="product-features">
+                    <li>Custom AI Agent Development</li>
+                    <li>Workflow Automation</li>
+                    <li>Tool Integration (100+ apps)</li>
+                    <li>30-Day Support</li>
+                    <li>ROI Guarantee</li>
+                </ul>
+                <a href="agentforge.html" class="product-btn">Learn More →</a>
+            </div>
+
+            <!-- Product 2: NewsletterAI -->
+            <div class="product-card p2">
+                <div class="product-icon">📧</div>
+                <div class="product-name">NewsletterAI</div>
+                <div class="product-tagline">Fully Automated Newsletter Management</div>
+                <div class="product-price">$99 - $799/month</div>
+                <div class="product-desc">AI-powered newsletter service that writes, designs, and sends your newsletters. You just approve.</div>
+                <ul class="product-features">
+                    <li>AI Content Generation</li>
+                    <li>Automatic Design & Layout</li>
+                    <li>Scheduling & Delivery</li>
+                    <li>Analytics & Optimization</li>
+                    <li>Growth Strategy</li>
+                </ul>
+                <a href="#contact" class="product-btn">Get Started →</a>
+            </div>
+
+            <!-- Product 3: ContentMachine -->
+            <div class="product-card p3">
+                <div class="product-icon">✍️</div>
+                <div class="product-name">ContentMachine</div>
+                <div class="product-tagline">AI Content Production Studio</div>
+                <div class="product-price">$199 - $1,299/month</div>
+                <div class="product-desc">End-to-end content creation service. Blog posts, social media, video scripts - all done for you.</div>
+                <ul class="product-features">
+                    <li>SEO-Optimized Blog Posts</li>
+                    <li>Social Media Content</li>
+                    <li>Video Scripts</li>
+                    <li>Email Sequences</li>
+                    <li>Content Strategy</li>
+                </ul>
+                <a href="#contact" class="product-btn">Learn More →</a>
+            </div>
+
+            <!-- Product 4: AIBusinessAudit -->
+            <div class="product-card p4">
+                <div class="product-icon">🔍</div>
+                <div class="product-name">AIBusinessAudit</div>
+                <div class="product-tagline">AI Transformation Strategy</div>
+                <div class="product-price">$299 - $1,499</div>
+                <div class="product-desc">Complete audit of your business with AI implementation roadmap. Know exactly where AI can help.</div>
+                <ul class="product-features">
+                    <li>Business Process Analysis</li>
+                    <li>AI Opportunity Assessment</li>
+                    <li>ROI Calculation</li>
+                    <li>Implementation Roadmap</li>
+                    <li>50-Page Detailed Report</li>
+                </ul>
+                <a href="#contact" class="product-btn">Book Audit →</a>
+            </div>
+
+            <!-- Product 5: AgentTemplates -->
+            <div class="product-card p5">
+                <div class="product-icon">🛠️</div>
+                <div class="product-name">AgentTemplates</div>
+                <div class="product-tagline">Ready-to-Deploy AI Agents</div>
+                <div class="product-price">$49 - $999</div>
+                <div class="product-desc">Pre-built AI agent templates for common tasks. Deploy in minutes, not weeks.</div>
+                <ul class="product-features">
+                    <li>50+ Agent Templates</li>
+                    <li>Marketing, Sales, Support</li>
+                    <li>Instant Deployment</li>
+                    <li>Video Tutorials</li>
+                    <li>Lifetime Updates</li>
+                </ul>
+                <a href="#contact" class="product-btn">Browse Templates →</a>
+            </div>
+
+            <!-- Product 6: AIAdvisor -->
+            <div class="product-card p6">
+                <div class="product-icon">🎯</div>
+                <div class="product-name">AIAdvisor</div>
+                <div class="product-tagline">Monthly AI Strategy Support</div>
+                <div class="product-price">$1,500 - $5,000/month</div>
+                <div class="product-desc">Your dedicated AI consultant. Monthly strategy, implementation support, and ongoing optimization.</div>
+                <ul class="product-features">
+                    <li>Monthly Strategy Sessions</li>
+                    <li>Implementation Support</li>
+                    <li>Team Training</li>
+                    <li>Performance Reviews</li>
+                    <li>Priority Support</li>
+                </ul>
+                <a href="#contact" class="product-btn">Apply Now →</a>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <h2>📊 Product Comparison</h2>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Best For</th>
+                    <th>Price Range</th>
+                    <th>Delivery</th>
+                    <th>Support</th>
+                </tr>
+                <tr>
+                    <td>AgentForge</td>
+                    <td>Business Automation</td>
+                    <td>$499 - $4,999</td>
+                    <td>7 days</td>
+                    <td>30-90 days</td>
+                </tr>
+                <tr>
+                    <td>NewsletterAI</td>
+                    <td>Content Creators</td>
+                    <td>$99 - $799/mo</td>
+                    <td>Ongoing</td>
+                    <td>Included</td>
+                </tr>
+                <tr>
+                    <td>ContentMachine</td>
+                    <td>Marketing Teams</td>
+                    <td>$199 - $1,299/mo</td>
+                    <td>Ongoing</td>
+                    <td>Included</td>
+                </tr>
+                <tr>
+                    <td>AIBusinessAudit</td>
+                    <td>Decision Makers</td>
+                    <td>$299 - $1,499</td>
+                    <td>2-3 weeks</td>
+                    <td>3 months</td>
+                </tr>
+                <tr>
+                    <td>AgentTemplates</td>
+                    <td>DIY Users</td>
+                    <td>$49 - $999</td>
+                    <td>Instant</td>
+                    <td>30 days</td>
+                </tr>
+                <tr>
+                    <td>AIAdvisor</td>
+                    <td>Enterprise</td>
+                    <td>$1,500 - $5,000/mo</td>
+                    <td>Ongoing</td>
+                    <td>Full-time</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="revenue-projections">
+            <h2>💰 Revenue Potential</h2>
+            <p>Combine multiple services for maximum impact</p>
+            <div class="revenue-grid">
+                <div class="revenue-item">
+                    <div class="month">Month 1-3</div>
+                    <div class="amount">$10K-50K</div>
+                    <div>Launch Phase</div>
+                </div>
+                <div class="revenue-item">
+                    <div class="month">Month 4-6</div>
+                    <div class="amount">$30K-80K</div>
+                    <div>Growth Phase</div>
+                </div>
+                <div class="revenue-item">
+                    <div class="month">Month 7-12</div>
+                    <div class="amount">$80K-200K</div>
+                    <div>Scale Phase</div>
+                </div>
+                <div class="revenue-item">
+                    <div class="month">Year 1 Total</div>
+                    <div class="amount">$300K-500K</div>
+                    <div>Annual Revenue</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section" id="contact">
+            <h2>Ready to Transform Your Business with AI?</h2>
+            <p style="font-size: 1.2em; opacity: 0.8;">Book a free 30-minute consultation. We'll analyze your needs and recommend the perfect solution.</p>
+            <a href="https://calendly.com/your-link" class="cta-btn">Book Free Consultation →</a>
+            <p style="margin-top: 30px; opacity: 0.6;">Or email: hello@aiagentempire.com</p>
+        </div>
+
+        <footer>
+            <p>© 2026 AI Agent Empire. Serving clients worldwide.</p>
+            <p style="margin-top: 10px;">Built with 💙 for entrepreneurs who want to work smarter, not harder.</p>
+        </footer>
+    </div>
+</body>
+</html>
