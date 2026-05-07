@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Person Company Case Vault | 一人公司案例库</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .nav .links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .nav .links a:hover {
+            opacity: 1;
+        }
+        .hero {
+            padding: 150px 40px 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .hero .cta-btn {
+            display: inline-block;
+            background: #00ff88;
+            color: #000;
+            padding: 18px 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .hero .cta-btn:hover {
+            transform: scale(1.05);
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 40px;
+            background: rgba(0,0,0,0.3);
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-item .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .stat-item .label {
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .case-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .case-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+        }
+        .case-card .revenue {
+            color: #00ff88;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .case-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        .case-card .tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .case-card .tag {
+            background: rgba(0,255,136,0.2);
+            color: #00ff88;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+        .case-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .feature {
+            text-align: center;
+            padding: 40px;
+        }
+        .feature .icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #00ff88;
+        }
+        .feature p {
+            opacity: 0.8;
+        }
+        .pricing-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 100px 40px;
+            text-align: center;
+        }
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 500px;
+            margin: 0 auto;
+            border: 2px solid #00ff88;
+        }
+        .pricing-card .price {
+            font-size: 4em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .pricing-card .original {
+            font-size: 1.5em;
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+        .pricing-card .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+        .pricing-card .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .pricing-card .features-list li:before {
+            content: "✓ ";
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .btn-large {
+            display: inline-block;
+            background: #00ff88;
+            color: #000;
+            padding: 20px 60px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 4px solid #00ff88;
+        }
+        .testimonial .quote {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .testimonial .author {
+            opacity: 0.7;
+        }
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        footer a {
+            color: #00ff88;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="logo">🚀 OPC Case Vault</div>
+        <div class="links">
+            <a href="#cases">案例</a>
+            <a href="#features">特点</a>
+            <a href="#pricing">定价</a>
+            <a href="https://opposite-oyster-61e.notion.site/35878dda622981bfa534f616597c2c1e" target="_blank">免费预览</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>一人公司案例库</h1>
+        <p>31个年入百万的真实案例，每个都包含完整策略拆解、收入数据、工具清单和可复制路径。不是成功学，是可执行的行动指南。</p>
+        <a href="#pricing" class="cta-btn">立即获取 →</a>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="number">31</div>
+            <div class="label">真实案例</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">$20M+</div>
+            <div class="label">总年收入</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">100%</div>
+            <div class="label">可执行</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">500+</div>
+            <div class="label">用户已购买</div>
+        </div>
+    </div>
+
+    <div class="container" id="cases">
+        <h2 class="section-title">精选案例预览</h2>
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="revenue">$1,000,000/年</div>
+                <h3>Matt D'Avella</h3>
+                <div class="tags">
+                    <span class="tag">YouTube</span>
+                    <span class="tag">课程</span>
+                </div>
+                <p>从负债$50K到年入百万的电影制作人。关键策略：每周1个高质量视频，坚持5年，不卖广告只卖自己的课程。</p>
+            </div>
+            <div class="case-card">
+                <div class="revenue">$600,000/年</div>
+                <h3>Pieter Levels</h3>
+                <div class="tags">
+                    <span class="tag">独立开发</span>
+                    <span class="tag">SaaS</span>
+                </div>
+                <p>12个项目4个成功，包括Nomad List、RemoteOK。关键策略：快速验证，公开构建，12个月内启动12个项目。</p>
+            </div>
+            <div class="case-card">
+                <div class="revenue">$10M+/年</div>
+                <h3>James Clear</h3>
+                <div class="tags">
+                    <span class="tag">写作</span>
+                    <span class="tag">书籍</span>
+                </div>
+                <p>《Atomic Habits》作者，从Newsletter到千万畅销书。关键策略：每周四发一篇深度文章，坚持10年。</p>
+            </div>
+            <div class="case-card">
+                <div class="revenue">$500,000/年</div>
+                <h3>Nicolas Cole</h3>
+                <div class="tags">
+                    <span class="tag">内容</span>
+                    <span class="tag">教育</span>
+                </div>
+                <p>数字写作教练，通过写作建立个人品牌。关键策略：每天写，公开写，用内容建立信任。</p>
+            </div>
+            <div class="case-card">
+                <div class="revenue">$360,000/年</div>
+                <h3>Justin Welsh</h3>
+                <div class="tags">
+                    <span class="tag">LinkedIn</span>
+                    <span class="tag">咨询</span>
+                </div>
+                <p>LinkedIn顶级创作者，一人公司典范。关键策略：每天发内容，建立个人品牌，高客单价咨询。</p>
+            </div>
+            <div class="case-card">
+                <div class="revenue">$1,000,000/年</div>
+                <h3>Courtland Allen</h3>
+                <div class="tags">
+                    <span class="tag">社区</span>
+                    <span class="tag">平台</span>
+                </div>
+                <p>Indie Hackers创始人，从社区到百万收入。关键策略：先建社区，再 monetize，让社区成员成功。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="features">
+        <h2 class="section-title">你将获得什么</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="icon">📊</div>
+                <h3>真实收入数据</h3>
+                <p>不是估算，是公开可查的真实数据。每个案例都包含详细的收入构成和商业模式。</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🎯</div>
+                <h3>关键策略拆解</h3>
+                <p>深度分析他们做对了什么，哪些策略可以复制，哪些需要特定资源。</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🛠️</div>
+                <h3>完整工具清单</h3>
+                <p>他们用什么工具、怎么组合、为什么选择这些工具。节省你的调研时间。</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🚀</div>
+                <h3>可复制路径</h3>
+                <p>不是看热闹，是学门道。每个案例都包含普通人可以复制的具体步骤。</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🔄</div>
+                <h3>持续更新</h3>
+                <p>每周新增1-2个案例。一次购买，终身更新。紧跟最新趋势。</p>
+            </div>
+            <div class="feature">
+                <div class="icon">📱</div>
+                <h3>Notion数据库</h3>
+                <p>可筛选、可搜索、可导出。按行业、收入、商业模式快速找到你需要的案例。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">用户反馈</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p class="quote">"这个案例库太值了！我按照Pieter Levels的方法，3个月启动了2个项目，其中一个已经开始盈利。"</p>
+                <p class="author">- 李明，软件工程师</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"以前总觉得年入百万遥不可及，看了这些案例才发现，原来普通人也能做到。关键是找到适合自己的路径。"</p>
+                <p class="author">- 小王，自由设计师</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"每个案例都写得很详细，不是那种泛泛而谈的成功学，而是具体的策略和工具。已经推荐给了整个创业社群。"</p>
+                <p class="author">- 张总，连续创业者</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="pricing-section" id="pricing">
+        <h2 class="section-title">限时优惠</h2>
+        <div class="pricing-card">
+            <p class="original">原价 $49</p>
+            <p class="price">$19</p>
+            <p style="margin-bottom: 30px;">早鸟价，随时涨价</p>
+            <ul class="features-list">
+                <li>31个详细案例拆解</li>
+                <li>真实年收入数据</li>
+                <li>关键策略分析</li>
+                <li>完整工具清单</li>
+                <li>可复制路径</li>
+                <li>每周新增案例</li>
+                <li>Notion数据库格式</li>
+                <li>终身更新</li>
+                <li>7天无理由退款</li>
+            </ul>
+            <a href="https://gumroad.com/l/one-person-company" class="btn-large">立即购买 →</a>
+            <p style="margin-top: 20px; opacity: 0.7;">✓ 安全支付 ✓ 即时访问 ✓ 终身更新</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 One-Person Company Case Vault. All rights reserved.</p>
+        <p>Contact: <a href="mailto:151804947@qq.com">151804947@qq.com</a></p>
+        <p style="margin-top: 20px;">
+            <a href="https://opposite-oyster-61e.notion.site/35878dda622981bfa534f616597c2c1e" target="_blank">免费预览案例库</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">LinkedIn</a>
+        </p>
+    </footer>
+</body>
+</html>
